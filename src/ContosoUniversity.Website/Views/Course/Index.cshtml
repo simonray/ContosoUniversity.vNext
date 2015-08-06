@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>Courses</h2>
+
+<p>
+    <a asp-controller="Course" asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Course" asp-action="Index">
+    <div class="row col-md-6">
+        <div class="form-group">
+            <label>Select Department:</label>
+            <div class="input-group">
+                <select asp-expression="SelectedDepartment" asp-items="ViewBag.DepartmentID" asp-option-label="All" class="form-control"></select>
+                <span class="input-group-btn">
+                    <input class="btn btn-info" type="submit" value="Filter" />
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            <display-name asp-for="@Model.First().CourseID" />
+        </th>
+        <th>
+            <display-name asp-for="@Model.First().Title" />
+        </th>
+        <th>
+            <display-name asp-for="@Model.First().Credits" />
+        </th>
+        <th>
+            <display-name asp-for="@Model.First().Department" />
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <display asp-for="@item.CourseID" />
+            </td>
+            <td>
+                <display asp-for="@item.Title" />
+            </td>
+            <td>
+                <display asp-for="@item.Credits" />
+            </td>
+            <td>
+                <display asp-for="@item.Department.Name" />
+            </td>
+            <td>
+                <a asp-controller="Course" asp-action="Edit" asp-route-id=@item.CourseID>Edit</a> |
+                <a asp-controller="Course" asp-action="Details" asp-route-id=@item.CourseID>Details</a> |
+                <a asp-controller="Course" asp-action="Delete" asp-route-id=@item.CourseID>Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>

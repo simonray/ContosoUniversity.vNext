@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ContosoUniversity.ViewModels.EnrollmentDateGroup>
+
+@{
+    ViewBag.Title = "Student Body Statistics";
+}
+
+<style>
+    td {
+        padding: 5px;
+    }
+</style>
+
+<h2>Student Body Statistics</h2>
+
+<table>
+    <tr>
+        <th>Enroll Date</th>
+        <th>Students</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td align="center">
+                <display asp-for="@item.EnrollmentDate" />
+            </td>
+            <td align="center">
+                <display asp-for="@item.StudentCount" />
+            </td>
+        </tr>
+    }
+</table>

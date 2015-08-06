@@ -1,0 +1,36 @@
+﻿@model ContosoUniversity.Models.Course
+
+@{
+    ViewBag.Title = "UpdateCourseCredits";
+}
+
+<h2>Update Credits</h2>
+
+<h4>Enter a number to multiply ALL course's credits by</h4>
+<hr />
+
+@if (ViewBag.RowsAffected == null)
+{
+    <form asp-controller="Course" asp-action="UpdateCourseCredits" method="post" role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">Increase By</label>
+            <div class="col-md-3">
+                <input id="multiplier" class="form-control" placeholder="Enter number of credits" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </div>
+    </form>
+}
+
+@if (ViewBag.RowsAffected != null)
+{
+    <p>Number of rows updated: @ViewBag.RowsAffected</p>
+}
+
+<div>
+    <a asp-controller="Course" asp-action="Index">Back to List</a>
+</div>

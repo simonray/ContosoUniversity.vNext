@@ -1,0 +1,124 @@
+﻿@model ContosoUniversity.ViewModels.InstructorIndexData
+
+@{
+    ViewBag.Title = "Instructors";
+}
+
+<h2>Instructors</h2>
+
+<p>
+    <a asp-controller="Instructor" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Hire Date</th>
+        <th>Office</th>
+        <th>Courses</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Instructors)
+    {
+        string selectedRow = "";
+        if (item.ID == ViewBag.InstructorID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                <display asp-for="@item.LastName" />
+            </td>
+            <td>
+                <display asp-for="@item.FirstMidName" />
+            </td>
+            <td>
+                <display asp-for="@item.HireDate" />
+            </td>
+            <td>
+                <display asp-for="@item.OfficeAssignment.Location" />
+            </td>
+            <td>
+                @{
+                    foreach (var course in item.Courses)
+                    {
+                        <display asp-for="@course.CourseID" />
+                        <display asp-for="@course.Course.Title" />
+                        <br />
+                    }
+                }
+            </td>
+
+            <td>
+                <a asp-controller="Instructor" asp-action="Index" asp-route-id=@item.ID>Select</a> |
+                <a asp-controller="Instructor" asp-action="Edit" asp-route-id=@item.ID>Edit</a> |
+                <a asp-controller="Instructor" asp-action="Details" asp-route-id=@item.ID>Details</a> |
+                <a asp-controller="Instructor" asp-action="Delete" asp-route-id=@item.ID>Delete</a>
+            </td>
+        </tr>
+                    }
+
+</table>
+
+@if (Model.Courses != null)
+{
+    <h3>Courses Taught by Selected Instructor</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Department</th>
+        </tr>
+
+        @foreach (var item in Model.Courses)
+        {
+            string selectedRow = "";
+            if (item.CourseID == ViewBag.CourseID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    <a asp-controller="Instructor" asp-action="Index" asp-route-courseid=@item.CourseID>Select</a>
+                </td>
+                <td>
+                    <display asp-for="@item.CourseID" />
+                </td>
+                <td>
+                    <display asp-for="@item.Title" />
+                </td>
+                <td>
+                    <display asp-for="@item.Department.Name" />
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@if (Model.Enrollments != null)
+{
+    <h3>
+        Students Enrolled in Selected Course
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var item in Model.Enrollments)
+        {
+            <tr>
+                <td>
+                    <display asp-for="@item.Student.FullName" />
+                </td>
+                <td>
+                    <display asp-for="@item.Grade" />
+                </td>
+            </tr>
+        }
+    </table>
+}

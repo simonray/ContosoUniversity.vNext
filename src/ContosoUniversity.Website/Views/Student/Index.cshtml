@@ -1,0 +1,69 @@
+﻿@model ContosoUniversity.ViewModels.IPagedList<ContosoUniversity.Models.Student>
+
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>Students</h2>
+
+<p>
+    <a asp-controller="Student" asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Student" asp-action="Index">
+    <div class="row col-md-6">
+        <div class="form-group">
+            <label>Find by Name:</label>
+            <div class="input-group">
+                <input name="SearchString" class="form-control" id="SearchString" type="text" value="@ViewBag.SearchString">
+                <span class="input-group-btn">
+                    <input class="btn btn-info" type="submit" value="Search" />
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div id="results">
+    <br />
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                <a asp-controller="Student" asp-action="Index" asp-route-sortorder=@ViewBag.NameSortParm asp-route-searchstring=@ViewBag.searchString>Last Name</a>
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                <a asp-controller="Student" asp-action="Index" asp-route-sortorder=@ViewBag.DateSortParm asp-route-searchstring=@ViewBag.searchString>Enrollment Date</a>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.LastName</td>
+                <td>@item.FirstMidName</td>
+                <td>
+                    <display asp-for="@item.EnrollmentDate"></display>
+                </td>
+                <td>
+                    <a asp-controller="Student" asp-action="Edit" asp-route-id=@item.ID>Edit</a> |
+                    <a asp-controller="Student" asp-action="Details" asp-route-id=@item.ID>Details</a> |
+                    <a asp-controller="Student" asp-action="Delete" asp-route-id=@item.ID>Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        <pager asp-action="index"
+               asp-controller="student"
+               asp-route-sortorder=@(ViewBag.CurrentSort as string)
+               asp-route-searchstring=@(ViewBag.SearchString as string)
+               page-index=@Model.Page
+               page-size=@Model.PageSize
+               total=@Model.TotalCount />
+    </p>
+</div>

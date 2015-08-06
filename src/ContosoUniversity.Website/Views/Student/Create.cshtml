@@ -1,0 +1,68 @@
+﻿@model ContosoUniversity.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-controller="Student" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <h4>Student</h4>
+    <hr />
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstMidName" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="FirstMidName" class="form-control" />
+            <span asp-validation-for="FirstMidName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnrollmentDate" class="control-label col-md-2"></label>
+        <div class="col-md-3">
+            <div class="input-group input-append date picker" data-date-format="yyyy-mm-dd">
+                <input asp-for="EnrollmentDate" asp-format="{0:yyyy-MM-dd}" class="form-control" />
+                <span class="input-group-btn">
+                    <span class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></span>
+                </span>
+            </div>
+            <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Student" asp-action="Index">Back to List</a>
+</div>
+
+@section scripts
+{
+    <script src="~/lib/jquery-validation/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+
+    <script>
+        $('.picker').datepicker(
+            {
+                autoclose: true,
+                format: 'yyyy-mm-dd',
+                todayBtn: true
+            });
+    </script>
+}

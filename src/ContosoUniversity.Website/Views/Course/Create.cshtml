@@ -1,0 +1,59 @@
+﻿@model ContosoUniversity.Models.Course
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-controller="Course" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <h4>Course</h4>
+    <hr />
+    <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="CourseID" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="CourseID" class="form-control" />
+            <span asp-validation-for="CourseID" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Title" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Credits" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <input asp-for="Credits" class="form-control" />
+            <span asp-validation-for="Credits" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DepartmentID" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <select asp-for="DepartmentID" asp-items="ViewBag.DepartmentID" class="form-control"></select>
+            <span asp-validation-for="DepartmentID" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Course" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts
+{
+
+}

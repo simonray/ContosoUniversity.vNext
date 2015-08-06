@@ -1,0 +1,34 @@
+﻿@model ContosoUniversity.Models.Course
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt><label asp-for="Department.Name"></label></dt>
+        <dd>@(Model.Department?.Name)</dd>
+
+        <dt><label asp-for="CourseID"></label></dt>
+        <dd>@Model.CourseID</dd>
+
+        <dt><label asp-for="Title"></label></dt>
+        <dd>@Model.Title</dd>
+
+        <dt><label asp-for="Credits"></label></dt>
+        <dd>@Model.Credits</dd>
+    </dl>
+
+    <form asp-controller="Course" asp-action="Delete" method="post" role="form">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-controller="Course" asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,32 @@
+﻿@model string
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">@Model</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-controller="Student" asp-action="Index">Students</a></li>
+
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Course <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-controller="Course" asp-action="Index">Courses</a></li>
+                        <li><a asp-controller="Course" asp-action="UpdateCourseCredits">Update Credits</a></li>
+                    </ul>
+                </li>
+
+                <li><a asp-controller="Instructor" asp-action="Index">Instructors</a></li>
+                <li><a asp-controller="Department" asp-action="Index">Departments</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@model ContosoUniversity.Models.Department
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt><label asp-for="Name"></label></dt>
+        <dd>@Model.Name</dd>
+
+        <dt><label asp-for="Budget"></label></dt>
+        <dd>@Model.Budget</dd>
+
+        <dt><label asp-for="StartDate"></label></dt>
+        <dd>@Model.StartDate</dd>
+
+        <dt><label asp-for="Administrator"></label></dt>
+        <dd>@(Model.Administrator?.FullName)</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-controller="Department" asp-action="Edit" asp-route-id=@Model.DepartmentID>Edit</a> |
+    <a asp-controller="Department" asp-action="Index">Back to List</a>
+</p>
