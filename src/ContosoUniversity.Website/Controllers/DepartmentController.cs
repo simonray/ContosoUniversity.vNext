@@ -5,7 +5,6 @@ using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Update;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Website.Controllers
@@ -28,7 +27,7 @@ namespace ContosoUniversity.Website.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Department department = await _db.Departments
                 .Include(d => d.Administrator)
@@ -72,7 +71,7 @@ namespace ContosoUniversity.Website.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Department department = await _db.Departments
                 .Include(d => d.Administrator)
@@ -90,7 +89,7 @@ namespace ContosoUniversity.Website.Controllers
         public async Task<ActionResult> Edit(int? id, byte[] rowVersion)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             var departmentToUpdate = await _db.Departments.FirstOrDefaultAsync(d => d.DepartmentID == id);
             if (departmentToUpdate == null)
@@ -123,7 +122,7 @@ namespace ContosoUniversity.Website.Controllers
         public async Task<ActionResult> Delete(int? id, bool? concurrencyError)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Department department = await _db.Departments
                 .Include(d => d.Administrator)

@@ -6,7 +6,6 @@ using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Website.Controllers
@@ -59,7 +58,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Instructor instructor = _db.Instructors
                 .Include(i => i.OfficeAssignment)
@@ -109,7 +108,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Instructor instructor = _db.Instructors
                 .Include(i => i.OfficeAssignment)
@@ -154,7 +153,7 @@ namespace ContosoUniversity.Website.Controllers
                .SingleOrDefaultAsync(i => i.ID == instructor.ID);
 
             if (instructorToUpdate == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             if (await TryUpdateModelAsync(instructorToUpdate))
             {
@@ -214,7 +213,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Delete(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Instructor instructor = _db.Instructors
                 .Include(i => i.OfficeAssignment)

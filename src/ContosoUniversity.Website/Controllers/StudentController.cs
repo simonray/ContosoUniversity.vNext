@@ -6,7 +6,6 @@ using Microsoft.Data.Entity;
 using Microsoft.Framework.OptionsModel;
 using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Website.Controllers
@@ -69,7 +68,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Student student = _db.Students
                 .Include(s => s.Enrollments)
@@ -110,7 +109,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Student student = _db.Students.FirstOrDefault(s => s.ID == id);
             if (student == null)
@@ -125,7 +124,7 @@ namespace ContosoUniversity.Website.Controllers
         public async Task<ActionResult> EditPost(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             var studentToUpdate = _db.Students.FirstOrDefault(s => s.ID == id);
             if (await TryUpdateModelAsync(studentToUpdate))
@@ -146,7 +145,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             if (saveChangesError.GetValueOrDefault())
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";

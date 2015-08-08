@@ -5,7 +5,6 @@ using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Website.Controllers
@@ -36,7 +35,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Course course = _db.Courses
                 .Include(d => d.Department)
@@ -77,7 +76,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Course course = _db.Courses.FirstOrDefault(c => c.CourseID == id);
             if (course == null)
@@ -92,7 +91,7 @@ namespace ContosoUniversity.Website.Controllers
         public async Task<ActionResult> EditPost(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             var courseToUpdate = _db.Courses.First(c => c.CourseID == id);
             if (await TryUpdateModelAsync(courseToUpdate))
@@ -114,7 +113,7 @@ namespace ContosoUniversity.Website.Controllers
         public ActionResult Delete(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return HttpBadRequest();
 
             Course course = _db.Courses
                 .Include(d => d.Department)
