@@ -22,7 +22,7 @@
         <dd>@Model.FirstMidName</dd>
 
         <dt><label asp-for="HireDate"></label></dt>
-        <dd>@Model.HireDate</dd>
+        <dd><display asp-for="HireDate" /></dd>
     </dl>
 
     <form asp-controller="Instructor" asp-action="Delete" method="post" role="form">

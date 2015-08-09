@@ -23,7 +23,7 @@
         <dd>@Model.Budget</dd>
 
         <dt><label asp-for="StartDate"></label></dt>
-        <dd>@Model.StartDate</dd>
+        <dd><display asp-for="StartDate" /></dd>
     </dl>
 
     <form asp-controller="Department" asp-action="Delete" method="post" role="form">
