@@ -16,6 +16,7 @@ namespace ContosoUniversity.Infrastructure.TagHelpers
     [TargetElement("pager", Attributes = LinksAttributeName)]
     public class PagerTagHelper : TagHelper
     {
+        [HtmlAttributeNotBound]
         protected IUrlHelper UrlHelper { get; set; }
 
         private const string ActionAttributeName = "asp-action";

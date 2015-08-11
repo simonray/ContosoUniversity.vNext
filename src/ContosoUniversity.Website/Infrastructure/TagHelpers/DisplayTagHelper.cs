@@ -8,9 +8,10 @@ namespace ContosoUniversity.Infrastructure.TagHelpers
     [TargetElement("display", Attributes = ForAttributeName)]
     public class DisplayTagHelper : TagHelper
     {
+        [HtmlAttributeNotBound]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
-
+        [HtmlAttributeNotBound]
         protected IHtmlHelper HtmlHelper { get; set; }
 
         private const string ForAttributeName = "asp-for";

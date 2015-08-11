@@ -14,8 +14,10 @@ namespace ContosoUniversity.Infrastructure.TagHelpers
     [TargetElement("select", Attributes = ExpressionAttributeName)]
     public class SelectTagHelper : TagHelper
     {
+        [HtmlAttributeNotBound]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
+        [HtmlAttributeNotBound]
         public IHtmlGenerator Generator { get; set; }
 
         private const string ExpressionAttributeName = "asp-expression";
