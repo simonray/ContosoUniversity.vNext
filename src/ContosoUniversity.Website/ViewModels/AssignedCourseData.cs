@@ -7,7 +7,7 @@
         public bool Assigned { get; set; }
         public override string ToString()
         {
-            return CourseID + " - " + Title;
+            return $"{CourseID} - {Title}";
         }
     }
 }
