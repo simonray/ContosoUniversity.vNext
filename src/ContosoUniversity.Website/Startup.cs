@@ -42,10 +42,10 @@ namespace ContosoUniversity.Website
             if (useInMemoryDatabase)
             {
                 services.AddEntityFramework()
-                    .AddInMemoryStore()
+                    .AddInMemoryDatabase()
                     .AddDbContext<SchoolContext>(options =>
                     {
-                        options.UseInMemoryStore();
+                        options.UseInMemoryDatabase();
                     });
             }
             else
@@ -73,7 +73,7 @@ namespace ContosoUniversity.Website
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
             }
             else
             {
