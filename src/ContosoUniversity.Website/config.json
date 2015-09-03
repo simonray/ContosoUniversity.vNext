@@ -2,6 +2,7 @@
   "AppSettings": {
     "SiteTitle": "ContosoUniversity",
     "Version": "vNext",
-    "PageSize": 3
+    "PageSize": 3,
+    "Package": "simonray/ContosoUniversity.vNext"
   }
 }

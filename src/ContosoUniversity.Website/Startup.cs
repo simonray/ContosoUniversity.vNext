@@ -1,12 +1,11 @@
 ﻿using ContosoUniversity.DAL;
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
+using Microsoft.Data.Entity;
+using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
-using Microsoft.Framework.Runtime;
-using Microsoft.Data.Entity;
 
 namespace ContosoUniversity.Website
 {
@@ -33,10 +32,10 @@ namespace ContosoUniversity.Website
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
 
-            var configuration = Configuration.GetConfigurationSection("AppSettings");
+            var configuration = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(configuration);
 
-            var sqlConnectionString = configuration.Get("Data:DefaultConnection:ConnectionString");
+            var sqlConnectionString = configuration["Data:DefaultConnection:ConnectionString"];
             var useInMemoryDatabase = string.IsNullOrWhiteSpace(sqlConnectionString);
 
             if (useInMemoryDatabase)

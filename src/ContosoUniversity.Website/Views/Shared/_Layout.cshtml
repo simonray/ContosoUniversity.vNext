@@ -18,12 +18,13 @@
         </environment>
     </head>
     <body>
+        <github-forkme package="@AppSettings.Options.Package" />
         @await Html.PartialAsync("_Navigation", AppSettings.Options.SiteTitle)
         <div class="container body-content">
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.UtcNow.Year - <a href="http://github.com/simonray/ContosoUniversity.vNext">@AppSettings.Options.SiteTitle</a></p>
+                <p>&copy; @DateTime.UtcNow.Year - <a href="http://github.com/@AppSettings.Options.Package">@AppSettings.Options.SiteTitle</a></p>
             </footer>
         </div>
 

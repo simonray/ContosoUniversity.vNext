@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNet.Mvc.TagHelpers;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Collections.Generic;
 
@@ -35,8 +36,6 @@ namespace ContosoUniversity.Infrastructure.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.TagName = null;
-
             var tagBuilder = Generator.GenerateSelect(
                 ViewContext,
                 null,
@@ -48,10 +47,14 @@ namespace ContosoUniversity.Infrastructure.TagHelpers
                 htmlAttributes: null);
 
             tagBuilder.AddCssClass(
-                context.AllAttributes.ContainsName("class") == true ? 
+                context.AllAttributes.ContainsName("class") == true ?
                 context.AllAttributes["class"].Value.ToString() : string.Empty);
 
-            output.Content.SetContent(tagBuilder.ToString());
+            if (tagBuilder != null)
+            {
+                output.MergeAttributes(tagBuilder);
+                output.PostContent.Append(tagBuilder.InnerHtml);
+            }
         }
     }
 }
