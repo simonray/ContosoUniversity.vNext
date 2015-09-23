@@ -54,7 +54,7 @@
                 <display asp-for="@item.Credits" />
             </td>
             <td>
-                <display asp-for="@item.Department.Name" />
+                <a asp-action="details" asp-controller="department" asp-route-id="@item.DepartmentID"><display asp-for="@item.Department.Name" /></a>
             </td>
             <td>
                 <a asp-controller="Course" asp-action="Edit" asp-route-id=@item.CourseID>Edit</a> |

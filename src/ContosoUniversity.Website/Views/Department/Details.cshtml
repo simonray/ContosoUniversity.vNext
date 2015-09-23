@@ -20,7 +20,7 @@
         <dd><display asp-for="StartDate" /></dd>
 
         <dt><label asp-for="Administrator"></label></dt>
-        <dd>@(Model.Administrator?.FullName)</dd>
+        <dd><a asp-action="details" asp-controller="instructor" asp-route-id="@Model.Administrator.ID">@(Model.Administrator?.FullName)</a></dd>
     </dl>
 </div>
 

@@ -12,7 +12,7 @@
     <dl class="dl-horizontal">
         
         <dt><label asp-for="Department"></label></dt>
-        <dd>@Model.Department.Name</dd>
+        <dd><a asp-action="details" asp-controller="department" asp-route-id="@Model.Department.DepartmentID">@Model.Department.Name</a></dd>
 
         <dt><label asp-for="CourseID"></label></dt>
         <dd>@Model.CourseID</dd>

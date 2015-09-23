@@ -39,7 +39,7 @@
                 <display asp-for="@item.StartDate" />
             </td>
             <td>
-                <display asp-for="@item.Administrator.FullName" />
+                <a asp-action="details" asp-controller="instructor" asp-route-id="@item.Administrator.ID"><display asp-for="@item.Administrator.FullName" /></a>
             </td>
             <td>
                 <a asp-controller="Department" asp-action="Edit" asp-route-id=@item.DepartmentID>Edit</a> |

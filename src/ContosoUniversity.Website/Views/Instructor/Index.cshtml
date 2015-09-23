@@ -44,7 +44,7 @@
                 @{
                     foreach (var course in item.Courses)
                     {
-                        <display asp-for="@course.CourseID" />
+                        <a asp-action="details" asp-controller="course" asp-route-id="@course.CourseID"><display asp-for="@course.CourseID" /></a>
                         <display asp-for="@course.Course.Title" />
                         <br />
                     }
