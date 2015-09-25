@@ -62,7 +62,10 @@ namespace ContosoUniversity.Website.Controllers
                 .Take(size)
                 .ToList();
 
-            return View(new PagedList<Student>(index, size, total, model));
+            if (Request.IsAjaxRequest())
+                return PartialView("_Students", new PagedList<Student>(index, size, total, model));
+            else
+                return View(new PagedList<Student>(index, size, total, model));
         }
 
         public ActionResult Details(int? id)
