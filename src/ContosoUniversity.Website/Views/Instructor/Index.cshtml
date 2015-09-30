@@ -85,7 +85,7 @@
                     <a asp-controller="Instructor" asp-action="Index" asp-route-courseid=@item.CourseID>Select</a>
                 </td>
                 <td>
-                    <display asp-for="@item.CourseID" />
+                    <a asp-action="details" asp-controller="course" asp-route-id="@item.CourseID"><display asp-for="@item.CourseID" /></a>
                 </td>
                 <td>
                     <display asp-for="@item.Title" />
@@ -113,7 +113,7 @@
         {
             <tr>
                 <td>
-                    <display asp-for="@item.Student.FullName" />
+                    <a asp-action="details" asp-controller="student" asp-route-id="@item.Student.ID"><display asp-for="@item.Student.FullName" /></a>
                 </td>
                 <td>
                     <display asp-for="@item.Grade" />
