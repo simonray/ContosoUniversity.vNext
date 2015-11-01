@@ -55,7 +55,7 @@ namespace ContosoUniversity.Website.Controllers
 
             var index = page ?? 1;
             var total = students.Count();            
-            var size = _settings.Options.PageSize;
+            var size = _settings.Value.PageSize;
 
             var model = students
                 .Skip((index-1) * size)

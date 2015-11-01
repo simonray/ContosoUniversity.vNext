@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
+﻿using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.AspNet.Mvc.TagHelpers;
+using Microsoft.AspNet.Mvc.ViewFeatures;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Collections.Generic;
 
@@ -12,7 +12,7 @@ namespace ContosoUniversity.Infrastructure.TagHelpers
     /// <remarks>
     /// Alternative &lt;select&gt; that supports a non-model expression and option labels.
     /// </remarks>
-    [TargetElement("select", Attributes = ExpressionAttributeName)]
+    [HtmlTargetElement("select", Attributes = ExpressionAttributeName)]
     public class SelectTagHelper : TagHelper
     {
         [HtmlAttributeNotBound]

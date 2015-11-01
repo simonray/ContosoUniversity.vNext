@@ -14,13 +14,14 @@ namespace ContosoUniversity.Website
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; set; }
 
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
@@ -41,6 +42,7 @@ namespace ContosoUniversity.Website
             if (useInMemoryDatabase)
             {
                 services.AddEntityFramework()
+
                     .AddInMemoryDatabase()
                     .AddDbContext<SchoolContext>(options =>
                     {
@@ -65,6 +67,7 @@ namespace ContosoUniversity.Website
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
 
             // Configure the HTTP request pipeline.
 
@@ -72,14 +75,17 @@ namespace ContosoUniversity.Website
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // send the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
+
+            // Add the platform handler to the request pipeline.
+            app.UseIISPlatformHandler();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();
@@ -95,9 +101,9 @@ namespace ContosoUniversity.Website
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
 
-            var sampleData = ActivatorUtilities.CreateInstance<SchoolInitializer>(
-                app.ApplicationServices, app.ApplicationServices.GetService<SchoolContext>());
-            sampleData.Seed();
+            ActivatorUtilities
+                .CreateInstance<SchoolInitializer>(app.ApplicationServices, app.ApplicationServices.GetService<SchoolContext>())
+                .Seed();
         }
     }
 }

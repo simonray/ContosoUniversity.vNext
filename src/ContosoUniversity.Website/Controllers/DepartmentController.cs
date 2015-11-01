@@ -3,7 +3,6 @@ using ContosoUniversity.Models;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Update;
 using System;
 using System.Threading.Tasks;
 

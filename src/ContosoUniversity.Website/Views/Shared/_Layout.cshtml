@@ -18,13 +18,13 @@
         </environment>
     </head>
     <body>
-        <github-forkme package="@AppSettings.Options.Package" />
-        @await Html.PartialAsync("_Navigation", AppSettings.Options.SiteTitle)
+        <github-forkme repository="@AppSettings.Value.Repository" />
+        @await Html.PartialAsync("_Navigation", AppSettings.Value.SiteTitle)
         <div class="container body-content">
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.UtcNow.Year - <a href="http://github.com/@AppSettings.Options.Package">@AppSettings.Options.SiteTitle</a></p>
+                <p>&copy; @DateTime.UtcNow.Year - <a href="http://github.com/@AppSettings.Value.Repository">@AppSettings.Value.SiteTitle</a></p>
             </footer>
         </div>
 
