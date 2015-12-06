@@ -3,7 +3,7 @@ using ContosoUniversity.Models;
 using ContosoUniversity.ViewModels;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.OptionsModel;
+using Microsoft.Extensions.OptionsModel;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

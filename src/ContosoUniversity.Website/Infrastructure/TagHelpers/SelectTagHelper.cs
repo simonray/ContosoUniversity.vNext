@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.AspNet.Mvc.TagHelpers;
 using Microsoft.AspNet.Mvc.ViewFeatures;
-using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+using Microsoft.AspNet.Razor.TagHelpers;
 using System.Collections.Generic;
 
 namespace ContosoUniversity.Infrastructure.TagHelpers

@@ -20,6 +20,7 @@ namespace ContosoUniversity.Models
         public string FirstMidName { get; set; }
 
         [Display(Name = "Full Name")]
+        [NotMapped]
         public string FullName
         {
             get { return $"{LastName} {FirstMidName}"; }
